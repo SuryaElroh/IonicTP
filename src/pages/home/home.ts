@@ -9,6 +9,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class HomePage {
 
   app: any = {name: String, version:Number};
+  img: String;
 
   constructor(public navCtrl: NavController, private camera: Camera) {
     this.app.name = "AppName";
