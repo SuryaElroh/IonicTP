@@ -8,9 +8,10 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Pictures</h3>
+  <h3 text-center>Photos</h3>
 
-  <button ion-button secondary (click)="takePhoto()">Take a picture</button>
+  <button ion-button block secondary (click)="takePhoto()">Prende une photo</button>
+  <button ion-button block secondary disabled (click)="savePhoto()">Sauvegarder la photo</button>
 
   <img [src]="img" *ngIf="img">
 </ion-content>

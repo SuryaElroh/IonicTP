@@ -8,14 +8,15 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter {{app.name}} {{app.version}}</h3>
+  <h3 text-center>Bienvenue dans</h3>
+  <h4 text-center>{{app.name}} {{app.version}}</h4>
 
   <ion-item>
-    <ion-label floating>app.name</ion-label>
+    <ion-label floating>Nom de l'application</ion-label>
     <ion-input [(ngModel)]="app.name" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label floating>app.version</ion-label>
+    <ion-label floating>Version de l'application</ion-label>
     <ion-input [(ngModel)]="app.version" type="text"></ion-input>
   </ion-item>
 
