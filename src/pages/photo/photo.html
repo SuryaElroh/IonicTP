@@ -10,8 +10,14 @@
 <ion-content padding>
   <h3 text-center>Photos</h3>
 
-  <button ion-button block secondary (click)="takePhoto()">Prende une photo</button>
-  <button ion-button block secondary disabled (click)="savePhoto()">Sauvegarder la photo</button>
+  <button ion-button block secondary (click)="takePic()">Prende une photo</button>
 
-  <img [src]="img" *ngIf="img">
+  <ion-card  *ngIf="img">
+    <img [src]="img">
+    <ion-fab right top>
+      <button ion-fab>
+        <ion-icon name="trash" (click)="deletePic()"></ion-icon>
+      </button>
+    </ion-fab>
+  </ion-card>
 </ion-content>

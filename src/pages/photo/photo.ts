@@ -21,8 +21,8 @@ export class PhotoPage {
     mediaType: this.camera.MediaType.PICTURE
   }
 
-  // Function that calls the camera and save the picture into the phone gallery
-  takePhoto(){
+  // Function : open the camera
+  takePic(){
     this.camera.getPicture(this.options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
@@ -34,6 +34,11 @@ export class PhotoPage {
     }, (err) => {
       console.log(err);
     });
+  }
+
+  // Function : save the picture into the phone gallery
+  deletePic(){
+    this.camera = null;
   }
 
 }
