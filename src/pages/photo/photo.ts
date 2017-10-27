@@ -8,19 +8,20 @@ import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
   templateUrl: 'photo.html'
 })
 export class PhotoPage {
-
-  app: any = {name: String, version:Number};
   img: String;
 
   constructor(public navCtrl: NavController, public camera: Camera, public base64ToGallery: Base64ToGallery) {
   }
 
+  // Define the options for the camera use
   options: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
+
+  // Function that calls the camera and save the picture into the phone gallery
   takePhoto(){
     this.camera.getPicture(this.options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI

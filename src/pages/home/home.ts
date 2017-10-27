@@ -7,8 +7,8 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  // Create Two variables to give a name and a number version to our app
   app: any = {name: String, version:Number};
-  img: String;
 
   constructor(public navCtrl: NavController) {
     this.app.name = "AppName";
