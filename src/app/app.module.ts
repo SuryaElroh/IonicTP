@@ -12,6 +12,7 @@ import { Camera } from '@ionic-native/camera';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { AlertController } from 'ionic-angular';
 import { MediaCapture } from '@ionic-native/media-capture';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MediaCapture } from '@ionic-native/media-capture';
     Base64ToGallery,
     AlertController,
     MediaCapture,
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
