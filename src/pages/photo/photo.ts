@@ -88,14 +88,14 @@ export class PhotoPage {
   takeVideo(){
     this.mediaCapture.captureVideo(this.videoOptions)
       .then((data: MediaFile[]) => {
-          // Set to null mv to visualize only video
+          // Set to null img to visualize only video
           this.img = false;
-          // Get the taken video
+          // Get the video
           this.mv = data[0].fullPath;
           // Success alert
           let alert = this.alertCtrl.create({
-            title: 'Erreur : ',
-            subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer. ' + err,
+            title: 'Succès : ',
+            subTitle: 'La vidéo a bien été sauvegardé dans votre gallerie.',
             buttons: ['OK']
           });
           alert.present();
