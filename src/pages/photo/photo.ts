@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { AlertController } from 'ionic-angular';
 
@@ -13,17 +14,27 @@ export class PhotoPage {
 
   constructor(public navCtrl: NavController,
               public camera: Camera,
+              public mediaCapture: MediaCapture,
               public base64ToGallery: Base64ToGallery,
               public  alertCtrl: AlertController) {
   }
 
-  // Define the options for the camera use
-  options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.ALLMEDIA
+  let options: CaptureImageOptions = { limit: 3 };
+  takeVideo(){
+    this.mediaCapture.captureImage(options)
+      .then(
+        (data: MediaFile[]) => console.log(data),
+        (err: CaptureError) => console.error(err)
+      );
   }
+
+  // Define the options for the camera use
+  // options: CameraOptions = {
+  //   quality: 100,
+  //   destinationType: this.camera.DestinationType.DATA_URL,
+  //   encodingType: this.camera.EncodingType.JPEG,
+  //   mediaType: this.camera.MediaType.PICTURE
+  // }
 
   // Function : open the camera
   takePic(){
@@ -35,7 +46,7 @@ export class PhotoPage {
         res => {
           let alert = this.alertCtrl.create({
             title: 'Sauvegarde effectuée',
-            subTitle: 'le fichier a été sauvegardé dans votre gallery',
+            subTitle: 'le fichier a été sauvegardé dans votre gallerie',
             buttons: ['OK']
           });
           alert.present();
@@ -53,10 +64,4 @@ export class PhotoPage {
       console.log(err);
     });
   }
-
-  // Function : save the picture into the phone gallery
-  deletePic(){
-    this.camera = null;
-  }
-
 }
