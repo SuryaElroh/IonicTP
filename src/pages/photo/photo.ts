@@ -25,7 +25,7 @@ export class PhotoPage {
   takeVideo(){
     this.mediaCapture.captureVideo(this.options)
       .then((data: MediaFile[]) => {
-          let d = data;
+          this.mv = data[0].fullPath;
         },
         (err: CaptureError) => console.error(err)
       );
