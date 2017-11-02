@@ -1,5 +1,5 @@
 ## Projet créé par Surya Elroh.
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+Projet de TP qui permet de prendre des photos.
 
 ## How to use this template
 
