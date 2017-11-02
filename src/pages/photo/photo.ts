@@ -22,12 +22,31 @@ export class PhotoPage {
               private localNotif: LocalNotifications) {
   }
 
+  // Define the camera options for gallery
+  galleryOptions: CameraOptions = {
+    sourceType : this.camera.PictureSourceType.PHOTOLIBRARY,
+    destinationType: this.camera.DestinationType.NATIVE_URI,
+    mediaType: this.camera.MediaType.VIDEO
+  }
+
+  // Function : call the phone gallery
+  toGallery(){
+    this.camera.getPicture(this.galleryOptions).then((data) => {
+      /// / Get the selected picture
+      this.mv = data;
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+
   // Define the camera options for pictures
   pictureOptions: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
+    mediaType: this.camera.MediaType.PICTURE,
+    correctOrientation : true
   }
 
   // Function : call the camera to take picture
@@ -39,23 +58,17 @@ export class PhotoPage {
       // Save the picture into the phone gallery
       this.base64ToGallery.base64ToGallery(imageData, { prefix: '_img' }).then(
         res => {
-          // Schedule a single notification
+          // Notification de succès
           this.localNotif.schedule({
             id: 1,
             text: 'Image sauvegardée',
             data: { secret: "success" }
           });
-          // let alert = this.alertCtrl.create({
-          //   title: 'Sauvegarde effectuée',
-          //   subTitle: 'le fichier a été sauvegardé dans votre gallerie',
-          //   buttons: ['OK']
-          // });
-          // alert.present();
         },
         err => {
           let alert = this.alertCtrl.create({
             title: 'Erreur',
-            subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer. ',
+            subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer.',
             buttons: ['OK']
           });
           alert.present();
@@ -74,17 +87,17 @@ export class PhotoPage {
     this.mediaCapture.captureVideo(this.videoOptions)
       .then((data: MediaFile[]) => {
           this.mv = data[0].fullPath;
-          let alert = this.alertCtrl.create({
-            title: 'Sauvegarde effectuée',
-            subTitle: 'la vidéo a bien été sauvegardé dans votre gallerie',
-            buttons: ['OK']
+          // Notification de succès
+          this.localNotif.schedule({
+            id: 1,
+            text: 'Vidéo sauvegardée',
+            data: { secret: "success" }
           });
-          alert.present();
         },
         (err: CaptureError) => {
           let alert = this.alertCtrl.create({
             title: 'Erreur : ',
-            subTitle: 'erreur : ' + err,
+            subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer.' + err,
             buttons: ['OK']
           });
           alert.present();

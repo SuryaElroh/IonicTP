@@ -4,20 +4,28 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="toGallery()">
+        <ion-icon name="images"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h3 text-center>Photos</h3>
 
-  <button ion-button block secondary (click)="takePic()">Prende une photo</button>
-  <button ion-button block secondary (click)="takeVideo()">Prende une video</button>
+  <button ion-button block outline (click)="takePic()">Prende une photo</button>
+  <button ion-button block outline (click)="takeVideo()">Prende une video</button>
+  <button ion-button block primary (click)="seeGallery()">Voir la gallerie</button>
 
   <ion-card *ngIf="img">
     <img [src]="img">
   </ion-card>
 
-  <video *ngIf="mv" controls>
-    <source [src]="mv">
-  </video>
+  <ion-card *ngIf="mv">
+    <video controls>
+      <source [src]="mv">
+    </video>
+  </ion-card>
 </ion-content>
