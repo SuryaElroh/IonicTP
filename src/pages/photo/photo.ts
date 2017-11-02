@@ -43,7 +43,6 @@ export class PhotoPage {
           this.localNotif.schedule({
             id: 1,
             text: 'Image sauvegardée',
-            sound: isAndroid? 'file://sound.mp3': 'file://beep.caf',
             data: { secret: key }
           });
           // let alert = this.alertCtrl.create({
