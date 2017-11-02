@@ -11,7 +11,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
   templateUrl: 'photo.html'
 })
 export class PhotoPage {
-  img: string;
+  img: any;
   mv: any;
 
   constructor(public navCtrl: NavController,
