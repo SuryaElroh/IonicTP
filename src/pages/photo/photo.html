@@ -13,11 +13,11 @@
   <button ion-button block secondary (click)="takePic()">Prende une photo</button>
   <button ion-button block secondary (click)="takeVideo()">Prende une video</button>
 
-  <ion-card  *ngIf="img">
+  <ion-card *ngIf="img">
     <img [src]="img">
   </ion-card>
 
-  <video controls>
+  <video *ngIf="mv" controls>
     <source [src]="mv">
   </video>
 </ion-content>

@@ -12,6 +12,7 @@ import { AlertController } from 'ionic-angular';
 export class PhotoPage {
   img: string;
   mv: any;
+  myError: any;
 
   constructor(public navCtrl: NavController,
               public camera: Camera,
@@ -27,7 +28,14 @@ export class PhotoPage {
       .then((data: MediaFile[]) => {
           this.mv = data[0].fullPath;
         },
-        (err: CaptureError) => console.error(err)
+        (err: CaptureError) => {
+          let alert = this.alertCtrl.create({
+            title: 'Erreur : ',
+            subTitle: 'erreur : ' + err,
+            buttons: ['OK']
+          });
+          alert.present();
+        }
       );
   }
 
