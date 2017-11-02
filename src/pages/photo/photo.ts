@@ -19,9 +19,9 @@ export class PhotoPage {
               public  alertCtrl: AlertController) {
   }
 
-  let options: CaptureImageOptions = { limit: 3 };
+  options: CaptureImageOptions = { limit: 3 };
   takeVideo(){
-    this.mediaCapture.captureImage(options)
+    this.mediaCapture.captureImage(this.options)
       .then(
         (data: MediaFile[]) => console.log(data),
         (err: CaptureError) => console.error(err)
