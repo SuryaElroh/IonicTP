@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { AlertController } from 'ionic-angular';
 
@@ -10,7 +10,8 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'photo.html'
 })
 export class PhotoPage {
-  img: String;
+  img: string;
+  mv: any;
 
   constructor(public navCtrl: NavController,
               public camera: Camera,
@@ -19,11 +20,13 @@ export class PhotoPage {
               public  alertCtrl: AlertController) {
   }
 
-  options: CaptureImageOptions = { limit: 3 };
+  options: CaptureVideoOptions = { limit: 2 };
+
   takeVideo(){
-    this.mediaCapture.captureImage(this.options)
-      .then(
-        (data: MediaFile[]) => console.log(data),
+    this.mediaCapture.captureVideo(this.options)
+      .then((data: MediaFile[]) => {
+          let d = data;
+        },
         (err: CaptureError) => console.error(err)
       );
   }
