@@ -54,7 +54,8 @@ export class PhotoPage {
     this.camera.getPicture(this.pictureOptions).then((imageData) => {
       // Get the taken picture
       this.img = 'data:image/jpeg;base64,' + imageData;
-
+      // Set to null mv to visualize only picture
+      this.mv = false;
       // Save the picture into the phone gallery
       this.base64ToGallery.base64ToGallery(imageData, { prefix: '_img' }).then(
         res => {
@@ -86,6 +87,8 @@ export class PhotoPage {
   takeVideo(){
     this.mediaCapture.captureVideo(this.videoOptions)
       .then((data: MediaFile[]) => {
+          // Set to null mv to visualize only picture
+          this.img = false;
           this.mv = data[0].fullPath;
           // Notification de succès
           this.localNotif.schedule({
