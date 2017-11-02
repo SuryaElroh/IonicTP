@@ -32,7 +32,9 @@ export class PhotoPage {
   // Function : call the phone gallery
   toGallery(){
     this.camera.getPicture(this.galleryOptions).then((data) => {
-      /// / Get the selected picture
+      // Set to null mv to visualize only picture
+      this.img = false;
+      // Get the selected picture
       this.mv = data;
     }, (err) => {
       console.log(err);
@@ -52,10 +54,10 @@ export class PhotoPage {
   // Function : call the camera to take picture
   takePic(){
     this.camera.getPicture(this.pictureOptions).then((imageData) => {
-      // Get the taken picture
-      this.img = 'data:image/jpeg;base64,' + imageData;
       // Set to null mv to visualize only picture
       this.mv = false;
+      // Get the taken picture
+      this.img = 'data:image/jpeg;base64,' + imageData;
       // Save the picture into the phone gallery
       this.base64ToGallery.base64ToGallery(imageData, { prefix: '_img' }).then(
         res => {
