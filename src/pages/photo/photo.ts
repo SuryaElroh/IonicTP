@@ -97,7 +97,7 @@ export class PhotoPage {
         (err: CaptureError) => {
           let alert = this.alertCtrl.create({
             title: 'Erreur : ',
-            subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer.' + err,
+            subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer. ' + err,
             buttons: ['OK']
           });
           alert.present();

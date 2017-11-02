@@ -17,15 +17,14 @@
 
   <button ion-button block outline (click)="takePic()">Prende une photo</button>
   <button ion-button block outline (click)="takeVideo()">Prende une video</button>
-  <button ion-button block primary (click)="seeGallery()">Voir la gallerie</button>
 
   <ion-card *ngIf="img">
     <img [src]="img">
   </ion-card>
 
   <ion-card *ngIf="mv">
-    <video controls>
-      <source [src]="mv">
+    <video width="320" height="240" controls>
+      <source src="{{ mv }}">
     </video>
   </ion-card>
 </ion-content>
