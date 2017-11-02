@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-photo',
@@ -10,7 +11,10 @@ import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 export class PhotoPage {
   img: String;
 
-  constructor(public navCtrl: NavController, public camera: Camera, public base64ToGallery: Base64ToGallery) {
+  constructor(public navCtrl: NavController,
+              public camera: Camera,
+              public base64ToGallery: Base64ToGallery,
+              public  alertCtrl: AlertController) {
   }
 
   // Define the options for the camera use
@@ -18,7 +22,7 @@ export class PhotoPage {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
+    mediaType: this.camera.MediaType.ALLMEDIA
   }
 
   // Function : open the camera
@@ -28,8 +32,22 @@ export class PhotoPage {
       // If it's base64:
       this.img = 'data:image/jpeg;base64,' + imageData;
       this.base64ToGallery.base64ToGallery(imageData, { prefix: '_img' }).then(
-        res => console.log('Saved image to gallery ', res),
-        err => console.log('Error saving image to gallery ', err)
+        res => {
+          let alert = this.alertCtrl.create({
+            title: 'Sauvegarde effectuée',
+            subTitle: 'le fichier a été sauvegardé dans votre gallery',
+            buttons: ['OK']
+          });
+          alert.present();
+        },
+        err => {
+          let alert = this.alertCtrl.create({
+            title: 'Erreur',
+            subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer. ',
+            buttons: ['OK']
+          });
+          alert.present();
+      }
       );
     }, (err) => {
       console.log(err);
