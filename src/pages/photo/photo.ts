@@ -59,7 +59,7 @@ export class PhotoPage {
       // Save the picture into the phone gallery
       this.base64ToGallery.base64ToGallery(imageData, { prefix: '_img' }).then(
         res => {
-          // Notification de succès
+          // Success notification
           this.localNotif.schedule({
             id: 1,
             text: 'Image sauvegardée',
@@ -67,6 +67,7 @@ export class PhotoPage {
           });
         },
         err => {
+          // Error alert
           let alert = this.alertCtrl.create({
             title: 'Erreur',
             subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer.',
@@ -87,17 +88,20 @@ export class PhotoPage {
   takeVideo(){
     this.mediaCapture.captureVideo(this.videoOptions)
       .then((data: MediaFile[]) => {
-          // Set to null mv to visualize only picture
+          // Set to null mv to visualize only video
           this.img = false;
+          // Get the taken video
           this.mv = data[0].fullPath;
-          // Notification de succès
-          this.localNotif.schedule({
-            id: 1,
-            text: 'Vidéo sauvegardée',
-            data: { secret: "success" }
+          // Success alert
+          let alert = this.alertCtrl.create({
+            title: 'Erreur : ',
+            subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer. ' + err,
+            buttons: ['OK']
           });
+          alert.present();
         },
         (err: CaptureError) => {
+          // Error alert
           let alert = this.alertCtrl.create({
             title: 'Erreur : ',
             subTitle: 'Une erreur est survenue lors de la sauvegarde, veuillez réessayer. ' + err,
