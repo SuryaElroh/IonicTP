@@ -43,7 +43,7 @@ export class PhotoPage {
           this.localNotif.schedule({
             id: 1,
             text: 'Image sauvegardée',
-            data: { secret: key }
+            data: { secret: "success" }
           });
           // let alert = this.alertCtrl.create({
           //   title: 'Sauvegarde effectuée',
